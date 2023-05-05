@@ -1,24 +1,31 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Totk.Analyze;
 
 public class TotkConfig
 {
-    private static readonly string _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Totk", "config.json");
+    private static readonly string _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Totk", "config.json");
 
+    [JsonIgnore]
     public static TotkConfig Shared { get; } = Load();
 
     public required string GamePath { get; set; }
 
     public static TotkConfig Load()
     {
+        if (!File.Exists(_path)) {
+            return Create();
+        }
+
         using FileStream fs = File.OpenRead(_path);
         return JsonSerializer.Deserialize<TotkConfig>(fs) ?? Create();
     }
 
     public void Save()
     {
-        FileStream fs = File.Create(_path);
+        Directory.CreateDirectory(Path.GetDirectoryName(_path)!);
+        using FileStream fs = File.Create(_path);
         JsonSerializer.Serialize(fs, this);
     }
 

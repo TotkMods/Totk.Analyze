@@ -1,49 +1,58 @@
 ﻿namespace Totk.Analyze.Extensions;
 
-public static class RecursionExtension
+public class RecursionExtension
 {
-    public static void IterateFolder(string path, Action<string> process)
+    private readonly Action<string, nint?, int?>? _process;
+    private readonly bool _parallel;
+
+    public RecursionExtension(Action<string, nint?, int?> process, bool parallel = true)
     {
-        IterateFiles(path, process);
+        _process = process;
+        _parallel = parallel;
+    }
+
+    public void IterateFolder(string path)
+    {
+        IterateFiles(path);
         foreach (var folder in Directory.EnumerateDirectories(path)) {
-            process(folder);
+            IterateFolder(folder);
         }
     }
 
-    public static void IterateFiles(string path, Action<string> process)
+    public void IterateFiles(string path)
     {
         foreach (var file in Directory.EnumerateFiles(path)) {
-            process(file);
+            _process!(file, null, null);
         }
     }
 
-    public static async Task IterateFolderAsync(string path, Func<string, Task> process, bool parallel = true)
+    public async Task IterateFolderAsync(string path)
     {
-        await IterateFilesAsync(path, process, parallel);
+        await IterateFilesAsync(path);
         IEnumerable<string> dirs = Directory.EnumerateDirectories(path);
-        if (parallel) {
+        if (_parallel) {
             await Parallel.ForEachAsync(dirs, async (folder, cancellationToken) => {
-                await process(folder);
+                await IterateFolderAsync(folder);
             });
         }
         else {
             foreach (var folder in dirs) {
-                await process(folder);
+                await IterateFolderAsync(folder);
             }
         }
     }
 
-    public static async Task IterateFilesAsync(string path, Func<string, Task> process, bool parallel = true)
+    public async Task IterateFilesAsync(string path)
     {
         IEnumerable<string> files = Directory.EnumerateFiles(path);
-        if (parallel) {
+        if (_parallel) {
             await Parallel.ForEachAsync(files, async (file, cancellationToken) => {
-                await process(file);
+                await Task.Run(() => _process!(file, null, null), cancellationToken);
             });
         }
         else {
             foreach (var file in files) {
-                await process(file);
+                await Task.Run(() => _process!(file, null, null));
             }
         }
     }

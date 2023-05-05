@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Totk.Analyze", "src\Totk.Analyze.csproj", "{C4C29B8F-E291-4DC7-AB9F-EAE40D58707F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Totk.Analyze", "src\Totk.Analyze.csproj", "{C4C29B8F-E291-4DC7-AB9F-EAE40D58707F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{BFE03128-15DE-4C6B-8351-42B0A0679986}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cead", "lib\Cead\src\Cead.csproj", "{43DE613E-8A3A-4DBA-BEB3-99C7734E1E7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{C4C29B8F-E291-4DC7-AB9F-EAE40D58707F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4C29B8F-E291-4DC7-AB9F-EAE40D58707F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4C29B8F-E291-4DC7-AB9F-EAE40D58707F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43DE613E-8A3A-4DBA-BEB3-99C7734E1E7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43DE613E-8A3A-4DBA-BEB3-99C7734E1E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43DE613E-8A3A-4DBA-BEB3-99C7734E1E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43DE613E-8A3A-4DBA-BEB3-99C7734E1E7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{43DE613E-8A3A-4DBA-BEB3-99C7734E1E7B} = {BFE03128-15DE-4C6B-8351-42B0A0679986}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8C740ACA-0567-4272-AC55-EA5BFE2A55D6}

@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SarcLibrary" Version="2.0.2" />
     <PackageReference Include="ZstdSharp.Port" Version="0.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\lib\Cead\src\Cead.csproj" />
   </ItemGroup>
 
 </Project>

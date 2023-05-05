@@ -6,6 +6,8 @@ public class TotkConfig
 {
     private static readonly string _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Totk", "config.json");
 
+    public static TotkConfig Shared { get; } = Load();
+
     public required string GamePath { get; set; }
 
     public static TotkConfig Load()
@@ -16,7 +18,7 @@ public class TotkConfig
 
     public void Save()
     {
-        FileStream fs = File.Create(_path); 
+        FileStream fs = File.Create(_path);
         JsonSerializer.Serialize(fs, this);
     }
 

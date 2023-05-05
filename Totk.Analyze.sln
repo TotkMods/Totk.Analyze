@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Totk.Analyze", "Totk.Analyze\Totk.Analyze.csproj", "{C4C29B8F-E291-4DC7-AB9F-EAE40D58707F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Totk.Analyze", "src\Totk.Analyze.csproj", "{C4C29B8F-E291-4DC7-AB9F-EAE40D58707F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

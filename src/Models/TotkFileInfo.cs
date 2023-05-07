@@ -1,22 +1,26 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Totk.Analyze.Models;
 
 public unsafe class TotkFileInfo
 {
-    public required string FilePath { get; set; }
-    public required string Extension { get; set; }
+    public string FilePath { get; set; }
+    public string Extension { get; set; }
 
     public required bool IsCompressed { get; set; }
-    public required int? CompressedFileSize { get; set; }
+    public int? CompressedFileSize { get; set; }
     public required int FileSize { get; set; } = -1;
-    public required string? FourByteBinaryMagicHex { get; set; }
-    public required string? EightByteBinaryMagicHex { get; set; }
-    public required string? Magic { get; set; }
+    public string? FourByteBinaryMagicHex { get; set; }
+    public string? EightByteBinaryMagicHex { get; set; }
+    public string? Magic { get; set; }
     public string? TestResult { get; set; }
 
     private readonly byte* data;
+
+    [JsonConstructor]
+    public TotkFileInfo() { }
 
     [SetsRequiredMembers]
     public TotkFileInfo(string path, string ext, nint? src = null, int? len = null)

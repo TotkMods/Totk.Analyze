@@ -12,6 +12,12 @@ public class TotkConfig
 
     public required string GamePath { get; set; }
 
+    public static byte[] GetFileBytes(string path, bool decompress)
+        => decompress && path.EndsWith(".zs") ? TotkZstd.Decompress(path, File.ReadAllBytes(GetFile(path))).ToArray() : File.ReadAllBytes(GetFile(path));
+
+    public static string GetFile(string path)
+        => Path.Combine(Shared.GamePath, path);
+
     public static TotkConfig Load()
     {
         if (!File.Exists(_path)) {

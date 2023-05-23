@@ -10,7 +10,7 @@ public static class GenHashTable
     public static void Execute()
     {
         using Restbl restbl = Restbl.FromBinary(
-            TotkConfig.GetFileBytes(Path.Combine("System", "Resource", "ResourceSizeTable.Product.110.rsizetable.zs"), decompress: true));
+            TotkConfig.GetFileBytes(Path.Combine("System", "Resource", "ResourceSizeTable.Product.111.rsizetable.zs"), decompress: true));
 
         var fileCache = JsonExtension.LoadJson<Dictionary<string, string?>>("FileCache.json");
         foreach ((var file, var rel) in fileCache) {
